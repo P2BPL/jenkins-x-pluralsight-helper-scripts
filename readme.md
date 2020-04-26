@@ -31,19 +31,26 @@ To productionize it, you can look at modifying it so:
 
 To create a cluster run:
 
-`GCP_PROJECT=your-project-name ./create-cluster.sh`
+`GCP_PROJECT=your-gcp-project-name ./create-cluster.sh`
 
 The script will set up gcloud so it's ready to go, and then it will 
 create a k8s cluster using Terraform followed by `jx boot` to 
 install Jenkins X. You will get some prompts on 
 the command line both from `terraform apply` and `jx boot`
 
+**Do not delete `the environment-ps-jx-cluster-dev` directory**. It will be created
+the first time you run the script and needs to stay there for subsequent executions.
+If you accidentally delete it then you can clone it into the project root using 
+`git clone git@github.com:${YOUR_GIT_USERNAME}/environment-ps-jx-cluster-dev`.
+JX will give merge conflicts if it exists in your GitHub account already
+but isn't local.
+
 To destroy your cluster run:
 
-`GCP_PROJECT=your-project-name ./destroy-cluster.sh`
+`GCP_PROJECT=your-gcp-project-name ./destroy-cluster.sh`
 
-### Troubleshooting
+### Troubleshooting Terraform
 
-Sometimes Terraform can be flaky, which is the nature of so many parallel
-API calls to gcloud. If you see an error, you can try
-re-running the script, and it should fix the problem most of the time.
+Sometimes Terraform can be flaky, either with unexpected errors or timeouts, which 
+are not really solvable given the way it interacts with the cloud provider API. If 
+you see an error, you can try re-running the script, and it should fix the problem most of the time.

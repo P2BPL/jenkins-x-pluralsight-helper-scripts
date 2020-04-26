@@ -1,8 +1,11 @@
 #!/bin/bash
 set -e
 
-cd terraform
-terraform destroy
+if [ -z "$GCP_PROJECT" ]
+then
+  echo "Please enter the name of your GCP project"
+  read GCP_PROJECT
+fi
 
-rm -rf ps-jx-cluster-boot-config
-git clone git@github.com:jenkins-x/jenkins-x-boot-config.git ps-jx-cluster-boot-config
+cd terraform
+TF_VAR_gcp_project="${GCP_PROJECT}" terraform destroy

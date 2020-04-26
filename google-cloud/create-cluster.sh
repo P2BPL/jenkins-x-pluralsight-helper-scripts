@@ -26,11 +26,20 @@ gcloud projects add-iam-policy-binding ${GCP_PROJECT} --member user:${GCLOUD_USE
 
 cd terraform
 terraform init
-TF_VAR_gcp_project="${GCP_PROJECT}" terraform apply
-cd ../../jx-boot-configs
-rm -rf "environment-${GCP_PROJECT}-dev"
-git clone git@github.com:jenkins-x/jenkins-x-boot-config.git "environment-${GCP_PROJECT}-dev"
 
-cd "environment-${GCP_PROJECT}-dev"
-cp ../../google-cloud/terraform/jx-requirements.yml jx-requirements.yml
+TF_VAR_gcp_project="${GCP_PROJECT}" terraform apply
+
+cd ../..
+
+if [[ ! -d environment-ps-jx-cluster-dev ]]
+then
+    echo "You don't currently have a jx boot git repo, so creating one."
+    git clone git@github.com:jenkins-x/jenkins-x-boot-config.git environment-ps-jx-cluster-dev
+else
+    echo "Re-using the existing jx boot git repo"
+fi
+
+cd environment-ps-jx-cluster-dev
+cp ../google-cloud/terraform/jx-requirements.yml jx-requirements.yml
+
 jx boot

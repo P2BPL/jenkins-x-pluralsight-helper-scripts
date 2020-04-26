@@ -2,5 +2,5 @@
 .idea
 *.tfstate*
 jx-requirements.yml
-jx-boot-configs/**
+environment-ps-jx-cluster-dev
 !.gitkeep
