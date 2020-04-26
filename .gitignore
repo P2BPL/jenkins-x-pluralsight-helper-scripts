@@ -1,0 +1,6 @@
+.terraform
+.idea
+*.tfstate*
+jx-requirements.yml
+jx-boot-configs/**
+!.gitkeep
