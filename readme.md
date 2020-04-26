@@ -33,21 +33,21 @@ To create a cluster run:
 
 `GCP_PROJECT=your-gcp-project-name ./create-cluster.sh`
 
-The script will set up gcloud so it's ready to go, and then it will 
+The script will set up your gcloud config, and then it will 
 create a k8s cluster using Terraform followed by `jx boot` to 
 install Jenkins X. You will get some prompts on 
-the command line both from `terraform apply` and `jx boot`
-
-**Do not delete `the environment-ps-jx-cluster-dev` directory**. It will be created
-the first time you run the script and needs to stay there for subsequent executions.
-If you accidentally delete it then you can clone it into the project root using 
-`git clone git@github.com:${YOUR_GIT_USERNAME}/environment-ps-jx-cluster-dev`.
-JX will give merge conflicts if it exists in your GitHub account already
-but isn't local.
+the command line both from `terraform apply` and `jx boot` which
+are explained in module 3.
 
 To destroy your cluster run:
 
 `GCP_PROJECT=your-gcp-project-name ./destroy-cluster.sh`
+
+Destroying really will destroy all your infrastructure, even buckets with
+backups of your Jenkins X installation. Because of this you should manually
+delete the `environment-ps-jx-cluster-dev` repository from your GitHub account.
+That way if you create again you will get a clean slate and a new repo. Re-using 
+the existing one after recreating the infrastructure could cause errors.
 
 ### Troubleshooting Terraform
 

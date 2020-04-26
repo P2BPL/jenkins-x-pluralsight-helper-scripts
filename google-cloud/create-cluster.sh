@@ -1,13 +1,19 @@
 #!/bin/bash
 set -e
 
-if [ -z "$GCP_PROJECT" ]
+if [ -z "${GCP_PROJECT}" ]
 then
-  echo "Please enter the name of your GCP project"
-  read GCP_PROJECT
+  echo "Please set to GCP_PROJECT environment variable to your GCP project name"
+  exit 1
 fi
 
-export GCP_PROJECT
+if [ -z "${GITHUB_USERNAME}" ]
+then
+  echo "Please set to GITHUB_USERNAME environment variable to your GitHub username"
+  exit 1
+fi
+
+export GITHUB_USERNAME
 
 echo Setting gcloud project to ${GCP_PROJECT}
 
@@ -42,4 +48,4 @@ fi
 cd environment-ps-jx-cluster-dev
 cp ../google-cloud/terraform/jx-requirements.yml jx-requirements.yml
 
-jx boot
+JX_VALUE_PIPELINEUSER_USERNAME="jenkins-x-pipeline-bot" jx boot
