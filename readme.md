@@ -27,7 +27,7 @@ To productionize it, you can look at modifying it so:
 - You are logged in as a user via `gcloud auth application-default`
 - You've created a GCP project which will contain the cluster
 
-## How to execute
+### How to execute
 
 To create a cluster run:
 
