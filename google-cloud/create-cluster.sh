@@ -7,14 +7,6 @@ then
   exit 1
 fi
 
-if [ -z "${GITHUB_USERNAME}" ]
-then
-  echo "Please set to GITHUB_USERNAME environment variable to your GitHub username"
-  exit 1
-fi
-
-export GITHUB_USERNAME
-
 echo Setting gcloud project to ${GCP_PROJECT}
 
 gcloud config set project ${GCP_PROJECT}
