@@ -6,6 +6,6 @@ variable "gcp_project" {
 module "jx" {
   source  = "jenkins-x/jx/google"
   gcp_project = var.gcp_project
-  cluster_name = "ps-jx-cluster"
+  cluster_name = "bm-jx-cluster"
   force_destroy = true
 }
