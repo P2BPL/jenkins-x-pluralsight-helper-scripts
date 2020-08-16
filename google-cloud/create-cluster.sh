@@ -29,15 +29,15 @@ TF_VAR_gcp_project="${GCP_PROJECT}" terraform apply
 
 cd ../..
 
-if [[ ! -d environment-ps-jx-cluster-dev ]]
+if [[ ! -d environment-bm-jx-cluster-dev ]]
 then
     echo "You don't currently have a jx boot git repo, so creating one."
-    git clone git@github.com:jenkins-x/jenkins-x-boot-config.git environment-ps-jx-cluster-dev
+    git clone git@github.com:jenkins-x/jenkins-x-boot-config.git environment-bm-jx-cluster-dev
 else
     echo "Re-using the existing jx boot git repo"
 fi
 
-cd environment-ps-jx-cluster-dev
+cd environment-bm-jx-cluster-dev
 cp ../google-cloud/terraform/jx-requirements.yml jx-requirements.yml
 
 JX_VALUE_PIPELINEUSER_USERNAME="jenkins-x-pipeline-bot" jx boot
