@@ -9,3 +9,6 @@ module "jx" {
   cluster_name = "bm-jx-cluster"
   force_destroy = true
 }
+output "jx_requirements" {
+  value = module.jx.jx_requirements
+} 
