@@ -27,6 +27,9 @@ terraform init
 
 TF_VAR_gcp_project="${GCP_PROJECT}" terraform apply
 
+echo To print jx module output to jx_requirements.yml
+terraform output jx_requirements > jx_requirements.yml
+
 cd ../..
 
 if [[ ! -d environment-bm-jx-cluster-dev ]]
