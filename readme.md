@@ -20,7 +20,11 @@ To productionize it, you can look at modifying it so:
 
 ### Pre-requisites
 
-- `jx` 
+- `jx`  command = curl -L "https://github.com/jenkins-x/jx/releases/download/$(curl --silent "https://github.com/jenkins-x/jx/releases/latest" | sed 's#.*tag/\(.*\)\".*#\1#')/jx-linux-amd64.tar.gz" | tar xzv "jx" 
+
+sudo mv jx /usr/local/bin
+
+
 - `helm` **version 2**
 - `gcloud`
 - `kubectl` installed via `gcloud`
@@ -39,6 +43,9 @@ install Jenkins X. You will get some prompts on
 the command line both from `terraform apply` and `jx boot` which
 are explained in module 3.
 
+To Downsize :
+
+[200~gcloud container clusters resize bm-jx-cluster --num-nodes=0 --zone us-central1-a
 To destroy your cluster run:
 
 `GCP_PROJECT=your-gcp-project-name ./destroy-cluster.sh`
